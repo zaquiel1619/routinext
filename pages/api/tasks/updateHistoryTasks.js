@@ -11,7 +11,9 @@ handler.post(async (req, res) => {
   await db.connect();
   const historyToday = await HistoryTask.findById(idHistoryTask);
   historyToday.tasks = tasks;
+  console.log("historyToday: ", historyToday);
   historyToday.save(function (err) {
+    console.log("error: ", err);
     if (err) res.status(500).send({ message: 'Error updating history task'});
     else {
       res.status(200).send({message: 'History task updated successfully'});

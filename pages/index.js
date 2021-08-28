@@ -59,7 +59,6 @@ export default function Home({ historyTodayProps, tasks: tasksProps = [] }) {
       }} handleClose={() => setCreationDialog(false)} open={showCreationDialog} />
       <CheckAuthentication />
       <Container className={classes.root}>
-        <h1>ROUTINE</h1>
         <Button
           className={classes.button}
           color="secondary"
