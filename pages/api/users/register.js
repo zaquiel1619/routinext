@@ -14,6 +14,7 @@ handler.post(async (req, res) => {
     password: bcrypt.hashSync(password),
     isAdmin: false,
   };
+  await db.connect();
   const newUser = new User(user);
   await newUser.save(function(err) {
     db.disconnect();
