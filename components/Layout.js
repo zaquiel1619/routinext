@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Head from 'next/head';
 import NextLink from 'next/link';
 import { createTheme } from '@material-ui/core/styles';
-import { AppBar, Badge, Container, Link, Switch, Toolbar, ThemeProvider, Typography } from '@material-ui/core';
+import { AppBar, Container, Link, Switch, Toolbar, ThemeProvider, Typography } from '@material-ui/core';
 import useStyles from '../utils/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { Store } from '../utils/Store';
@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 
 export default function Layout({ title, description, children }) {
   const { state, dispatch } = useContext(Store);
-  const { cart, darkMode, userInfo } = state;
+  const { darkMode, userInfo } = state;
   const theme = createTheme({
     typography: {
       h1: {
@@ -58,11 +58,6 @@ export default function Layout({ title, description, children }) {
             <div className={classes.grow}></div>
             <div>
               <Switch checked={darkMode} onChange={darkModeChangeHandler}></Switch>
-              <NextLink href="/cart" passHref>
-                <Link>
-                  {cart.cartItems.length > 0 ? <Badge badgeContent={cart.cartItems.length} color="secondary">Cart</Badge> : 'Cart'}
-                </Link>
-              </NextLink>
               {userInfo ? (<Button className={classes.navbarButton}>{userInfo.name}</Button>) : (
                 <NextLink href="/login" passHref>
                   <Link>Login</Link>

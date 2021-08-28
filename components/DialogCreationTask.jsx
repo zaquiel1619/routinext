@@ -1,9 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import {
   Button,
-  Card,
-  CardContent,
-  CardMedia,
   Dialog,
   List,
   ListItem,
@@ -69,7 +66,7 @@ export default function  DialogCreationTask({ addTask, handleClose, open = true 
       </AppBar>
       <List fullWidth>
         <ListItem fullWidth>
-          <TextField variant="outlined" fullWidth id="title" label="Title" inputProps={{type: 'text'}} onChange={e => setTaskInfo({ ...taskInfo, title: e.target.value})} value={taskInfo.title} fullWidth></TextField>
+          <TextField variant="outlined" fullWidth id="title" label="Title" inputProps={{type: 'text'}} onChange={e => setTaskInfo({ ...taskInfo, title: e.target.value})} value={taskInfo.title} ></TextField>
         </ListItem>
         <ListItem>
           <TextField variant="outlined" fullWidth id="description" label="Description" inputProps={{type: 'text'}} onChange={e => setTaskInfo({ ...taskInfo, description: e.target.value})} value={taskInfo.description}></TextField>
@@ -101,7 +98,7 @@ export default function  DialogCreationTask({ addTask, handleClose, open = true 
           {images && images.map((image) => {
             const { url } = image.images.original
             return (
-              <img component="img" src={url} title={image.title} width='50%' height="50%" style={{ maxWidth: "250px", maxHeight: "250px" }} onClick={() => {setTaskInfo({...taskInfo, image});}} />
+              <img key={image.title} component="img" src={url} title={image.title} width='50%' height="50%" style={{ maxWidth: "250px", maxHeight: "250px" }} onClick={() => {setTaskInfo({...taskInfo, image});}} />
             );
           })}
         </Container>

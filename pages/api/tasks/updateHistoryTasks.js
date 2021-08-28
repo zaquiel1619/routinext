@@ -15,7 +15,7 @@ handler.post(async (req, res) => {
     if (err) res.status(500).send({ message: 'Error updating history task'});
     else {
       res.status(200).send({message: 'History task updated successfully'});
-    };
+    }
   })
   await db.disconnect();
 });
