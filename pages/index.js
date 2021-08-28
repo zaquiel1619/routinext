@@ -15,7 +15,6 @@ import AddIcon from '@material-ui/icons/AddBox';
 import Container from '@material-ui/core/Container';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import Box from '@material-ui/core/Box';
-import Cookies from 'js-cookie';
 
 export default function Home({ historyTodayProps, tasks: tasksProps = [] }) {
   const { state } = useContext(Store);

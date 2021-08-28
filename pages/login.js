@@ -1,8 +1,7 @@
 import React, { useContext, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Layout from '../components/Layout';
-import NextLink from 'next/link';
-import { Button, Link, List, ListItem, TextField } from '@material-ui/core';
+import { Button, List, ListItem, TextField } from '@material-ui/core';
 import useStyles from '../utils/styles';
 import axios from 'axios';
 import { Store } from '../utils/Store';
