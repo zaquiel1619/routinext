@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button';
 export default function Layout({ title, description, children }) {
   const { state, dispatch } = useContext(Store);
   const { darkMode, userInfo } = state;
+  console.log("userInfo: ", userInfo);
   const theme = createTheme({
     typography: {
       h1: {
@@ -45,7 +46,7 @@ export default function Layout({ title, description, children }) {
   return (
     <div data-testid='layout'>
       <Head>
-        <title>{title ? `${title} - ZAMAZON` : 'ZAMAZON'}</title>
+          <title>{title ? `${title} - ROUTINEXT` : 'ROUTINEXT'}</title>
         {description  && <meta name="description" content={description}/>}
       </Head>
       <ThemeProvider theme={theme}>
@@ -53,7 +54,7 @@ export default function Layout({ title, description, children }) {
         <AppBar className={classes.navbar} position="static">
           <Toolbar>
             <NextLink href="/" passHref>
-              <Link><Typography className={classes.brand}>ZAMAZON</Typography></Link>
+              <Link><Typography className={classes.brand}>ROUTINEXT</Typography></Link>
             </NextLink>
             <div className={classes.grow}></div>
             <div>
@@ -71,7 +72,7 @@ export default function Layout({ title, description, children }) {
       </Container>
       <footer className={classes.footer}>
         <Typography>
-          All rights reserved. Next Zamazon
+          All rights reserved. Zaquiel Rodriguez Arce
         </Typography>
       </footer>
       </ThemeProvider>

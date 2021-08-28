@@ -1,4 +1,5 @@
 import Layout from '../components/Layout';
+import nookies from 'nookies';
 import { Button, Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from '@material-ui/core';
 import db from '../utils/db';
 import Task from '../models/Task';
@@ -14,6 +15,7 @@ import AddIcon from '@material-ui/icons/AddBox';
 import Container from '@material-ui/core/Container';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import Box from '@material-ui/core/Box';
+import Cookies from 'js-cookie';
 
 export default function Home({ historyTodayProps, tasks: tasksProps = [] }) {
   const { state } = useContext(Store);
@@ -81,13 +83,13 @@ export default function Home({ historyTodayProps, tasks: tasksProps = [] }) {
               </CardContent>
               <CardActionArea onClick={() => cardHandler(task._id, taskCompleted ? 0 : 100)}>
                 <CardContent>
-                  <Typography>
+                  <Typography variant="h2">
                     {task.title}
                   </Typography>
-                <CardMedia component="img" image={task.image} title={task.title} />
+                <CardMedia component="img" height={362} image={task.image} title={task.title} />
                 </CardContent>
                 <CardContent>
-                  <Typography>{task.description}</Typography>
+                  <Typography variant="body2" color="textSecondary">{task.description}</Typography>
                 </CardContent>
               </CardActionArea>
             </Card>
@@ -98,15 +100,24 @@ export default function Home({ historyTodayProps, tasks: tasksProps = [] }) {
   )
 }
 
-export async function getServerSideProps() {
+export const getServerSideProps = async (ctx) => {
   await db.connect();
-  const tasks = await Task.find({}).lean();
-  const historyTaskToday = await HistoryTask.findOne({ date: getToday()}).lean();
+  const cookies = nookies.get(ctx);
+  const userInfoCookie = cookies.userInfo;
+  if (userInfoCookie) {
+    const userInfo = JSON.parse(userInfoCookie);
+    const tasks = await Task.find({ user: userInfo.email }).lean();
+    const historyTaskToday = await HistoryTask.findOne({ date: getToday(), user: userInfo.email }).lean();
+    await db.disconnect();
+    return {
+      props: {
+        historyTodayProps: historyTaskToday ? db.convertDocToObj(historyTaskToday) : null,
+        tasks: tasks.map(db.convertDocToObj)
+      }
+    }
+  }
   await db.disconnect();
   return {
-    props: {
-      historyTodayProps: historyTaskToday ? db.convertDocToObj(historyTaskToday) : null,
-      tasks: tasks.map(db.convertDocToObj)
-    }
+    props: {}
   }
 }
