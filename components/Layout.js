@@ -12,7 +12,6 @@ import Button from '@material-ui/core/Button';
 export default function Layout({ title, description, children }) {
   const { state, dispatch } = useContext(Store);
   const { darkMode, userInfo } = state;
-  console.log("userInfo: ", userInfo);
   const theme = createTheme({
     typography: {
       h1: {
@@ -38,7 +37,6 @@ export default function Layout({ title, description, children }) {
   });
   const classes = useStyles();
   const darkModeChangeHandler = () => {
-    console.log("darkModeChangeHandler");
     dispatch({ type: darkMode ? 'DARK_MODE_OFF' : 'DARK_MODE_ON'});
     const newDarkMode = !darkMode;
     Cookies.set('darkMode', newDarkMode ? 'dark' : 'light');

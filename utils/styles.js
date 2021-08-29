@@ -1,5 +1,17 @@
 import { makeStyles } from '@material-ui/core/styles';
 
+export const percentFromHex = (valNum) => {
+  let decimalValue = Math.round(valNum*255/100);
+  let hexValue = '00';
+  if (valNum < 7) {
+    hexValue = "0"+decimalValue.toString(16).toUpperCase();
+  }
+  else {
+    hexValue = decimalValue.toString(16).toUpperCase();
+  }
+  return hexValue;
+}
+
 const useStyles = makeStyles((theme) =>({
   brand: {
     fontWeight: 'bold',
