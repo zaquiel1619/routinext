@@ -7,7 +7,6 @@ import useStyles from '../utils/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { Store } from '../utils/Store';
 import Cookies from 'js-cookie';
-import Button from '@material-ui/core/Button';
 
 export default function Layout({ title, description, children }) {
   const { state, dispatch } = useContext(Store);
