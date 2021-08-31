@@ -57,11 +57,9 @@ export default function Layout({ title, description, children }) {
             <div className={classes.grow}></div>
             <div>
               <Switch checked={darkMode} onChange={darkModeChangeHandler}></Switch>
-              {userInfo ? (<Button className={classes.navbarButton}>{userInfo.name}</Button>) : (
-                <NextLink href="/login" passHref>
-                  <Link>Login</Link>
-                </NextLink>
-              )}
+              <NextLink href="/login" passHref>
+                <Link>{userInfo ? userInfo.name : 'Login'}</Link>
+              </NextLink>
             </div>
           </Toolbar>
         </AppBar>

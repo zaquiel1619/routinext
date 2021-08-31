@@ -88,7 +88,7 @@ export default function Home({ historyTodayProps, tasks: tasksProps = [] }) {
       <Grid container spacing={3}>
         {tasks.map((task) => {
           let taskHistory = historyToday && historyToday.tasks && historyToday.tasks.filter((taskSaved) => taskSaved.id === task._id);
-          if (taskHistory.length === 1) taskHistory = taskHistory[0];
+          if (taskHistory && taskHistory.length === 1) taskHistory = taskHistory[0];
           else taskHistory = null;
           const taskCompleted = taskHistory && taskHistory.completed;
           const opacity = taskCompleted ? percentFromHex(taskCompleted) : '00';
